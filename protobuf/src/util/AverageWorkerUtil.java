@@ -1,14 +1,6 @@
 package util;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @author edward
@@ -17,12 +9,12 @@ public class AverageWorkerUtil {
     /**
      * 定义存储待分配数据集合
      */
-    private static List<String> list = Lists.newArrayList();
+    private static List<String> list = new ArrayList<>();
 
     /**
      * 定义存储分组数据的结构，Map去除泛型，适配多种数据类型格式，使用时需注意
      */
-    private static List<Map> los = Lists.newArrayList();
+    private static List<Map> los = new ArrayList<>();
 
     /**
      * 供外部调用的平均分配方法
@@ -48,11 +40,11 @@ public class AverageWorkerUtil {
      * @return List<Map>
      */
     private static List<Map> getMaps() {
-        List<Map> listMap = Lists.newArrayList();
+        List<Map> listMap = new ArrayList<>();
         listMap.addAll(los);
         //清空静态数据
-        los = Lists.newArrayList();
-        list = Lists.newArrayList();
+        los = new ArrayList<>();
+        list = new ArrayList<>();
         return listMap;
     }
 
@@ -85,10 +77,10 @@ public class AverageWorkerUtil {
     private static void initCollections(List<String> deviceGroupIds, List<String> workerIds) {
         //每次调用前清空数据
         if (list.size() > 0) {
-            list = Lists.newArrayList();
+            list = new ArrayList<>();
         }
         if (los.size() > 0) {
-            los = Lists.newArrayList();
+            los = new ArrayList<>();
         }
         list.addAll(deviceGroupIds);
         List<Map<String, List<String>>> list1 = new ArrayList<>();
@@ -111,23 +103,23 @@ public class AverageWorkerUtil {
      */
     private static <T> List<List<T>> chunk2(List<T> list, int group) {
         if (list.size() == 0) {
-            return Lists.newArrayList();
+            return new ArrayList<>();
         }
-        List<List<T>> result = Lists.newArrayList();
-        Map<Integer, Set<T>> temp = Maps.newHashMap();
+        List<List<T>> result = new ArrayList<>();
+        Map<Integer, Set<T>> temp = new HashMap<>();
         for (int i = 0; i < list.size(); i++) {
             if (temp.containsKey(i % group)) {
                 Set<T> ts = temp.get(i % group);
                 ts.add(list.get(i));
                 temp.put(i % group, ts);
             } else {
-                Set<T> ts = Sets.newHashSet();
+                Set<T> ts = new HashSet<>();
                 ts.add(list.get(i));
                 temp.put(i % group, ts);
             }
         }
         for (Set<T> ts : temp.values()) {
-            result.add(Lists.newArrayList(ts));
+            result.add(new ArrayList<>(ts));
         }
         return result;
     }

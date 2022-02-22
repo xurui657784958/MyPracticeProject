@@ -2,6 +2,11 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="http://mirrors.tencent.com/nexus/repository/maven-public" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="nfvc-release" />
       <option name="name" value="nfvc-release" />
       <option name="url" value="http://repo.iyunwei.tencent-cloud.com/repository/maven-public/" />

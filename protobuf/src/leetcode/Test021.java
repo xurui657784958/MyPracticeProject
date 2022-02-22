@@ -1,7 +1,8 @@
 package leetcode;
 
-import com.google.common.collect.Sets;
 import java.util.Set;
+
+import com.google.common.collect.Sets;
 import util.VxlanRouteConfig;
 
 public class Test021 {
